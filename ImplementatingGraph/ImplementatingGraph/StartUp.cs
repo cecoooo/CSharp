@@ -27,6 +27,9 @@ namespace ImplementatingGraph
             graph.CreateEdge(4, 4);
             graph.CreateEdge(4, 3);
             graph.PrintGraphConnections();
+            graph.ReverseDirectedGraph();
+            Console.WriteLine("--------------");
+            graph.PrintGraphConnections();
         }
     }
 }

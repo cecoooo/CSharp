@@ -4,7 +4,7 @@ using System.Text;
 using ImplementatingGraph;
 
 
-// Implemented with Adcacency List
+// Implemented with Adjacency List
 public class DirectedGraph
 {
     List<List<int>> list;
@@ -37,5 +37,22 @@ public class DirectedGraph
             }
             Console.WriteLine();
         }
+    }
+
+    public void ReverseDirectedGraph()
+    {
+        List<List<int>> newList = new List<List<int>>();
+        for (int i = 0; i < this.countIOfNodes; i++)
+        {
+            newList.Add(new List<int>());
+        }
+        for (int i = 0; i < this.countIOfNodes; i++)
+        {
+            for (int j = 0; j < this.list[i].Count; j++)
+            {
+                newList[this.list[i][j]].Add(i);
+            }
+        }
+        this.list = newList;
     }
 }
