@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Santase;
 
@@ -54,31 +55,21 @@ public class Player
     public Card Move(char trump, int leftCards)
     {
         Card card = null;
-        if (this.cards.Contains(new Card('Q', trump)) && this.cards.Contains(new Card('K', trump)))
-        {
+        if (this.cards.Contains(new Card('Q', trump)) && this.cards.Contains(new Card('K', trump))) 
             card = new Card('Q', trump);
-            this.cards.Remove(card);
-        }
-        else if (this.cards.Contains(new Card('Q', 'C')) && this.cards.Contains(new Card('K', 'C')))
-        {
+        else if (this.cards.Contains(new Card('Q', 'C')) && this.cards.Contains(new Card('K', 'C'))) 
             card = new Card('Q', 'C');
-            this.cards.Remove(card);
-        }
-        else if (this.cards.Contains(new Card('Q', 'D')) && this.cards.Contains(new Card('K', 'D')))
-        {
+        else if (this.cards.Contains(new Card('Q', 'D')) && this.cards.Contains(new Card('K', 'D'))) 
             card = new Card('Q', 'D');
-            this.cards.Remove(card);
-        }
-        else if (this.cards.Contains(new Card('Q', 'H')) && this.cards.Contains(new Card('K', 'H')))
-        {
+        else if (this.cards.Contains(new Card('Q', 'H')) && this.cards.Contains(new Card('K', 'H'))) 
             card = new Card('Q', 'H');
-            this.cards.Remove(card);
-        }
-        else if (this.cards.Contains(new Card('Q', 'S')) && this.cards.Contains(new Card('K', 'S')))
-        {
+        else if (this.cards.Contains(new Card('Q', 'S')) && this.cards.Contains(new Card('K', 'S'))) 
             card = new Card('Q', 'S');
-            this.cards.Remove(card);
-        }
+        else if (leftCards > 12)
+            card = this.cards.FindLast(x => (x.Rank == '9' && x.Suit != trump) || (x.Rank == 'J' && x.Suit != trump) || (x.Rank == 'Q' && x.Suit != trump) || (x.Rank == 'K' && x.Suit != trump) || (x.Rank == '0' && x.Suit != trump));
+        else
+            card = this.cards.FindLast(x => x.Rank == 'A' || x.Rank == '0' || x.Rank == 'K' || x.Rank == 'Q' || x.Rank == 'J' || x.Rank == '9');
+        this.cards.Remove(card);
         return card;
     }
 

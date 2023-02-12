@@ -121,56 +121,32 @@ public class Game
         Console.WriteLine($"Your Cards: {this.you.ViewCards()}\nTrump suit: {suit}");
     }
 
-    private void orderByStrength(List<string> deck, char trump) 
+    private Card WinningHand(Card f, Card s, char trump)
     {
-        string[] orderedCards = new string[24];
-        Dictionary<char, int> suits = new Dictionary<char, int>();
-        Dictionary<char, int> ranks = new Dictionary<char, int>();
-        suits.Add('C', 0);
-        suits.Add('D', 1);
-        suits.Add('H', 2);
-        suits.Add('S', 3);
-        ranks.Add('9', 0);
-        ranks.Add('J', 1);
-        ranks.Add('Q', 2);
-        ranks.Add('K', 3);
-        ranks.Add('0', 4);
-        ranks.Add('A', 5);
-        for (int i = 0; i < 24; i++)
+        if (f.Suit != s.Suit)
         {
-            if (deck[i][1] == trump) 
-            {
-                switch (deck[i][0])
-                {
-                    case 'A': orderedCards[23] = deck[i]; break;
-                    case '0': orderedCards[22] = deck[i]; break;
-                    case 'K': orderedCards[21] = deck[i]; break;
-                    case 'Q': orderedCards[20] = deck[i]; break;
-                    case 'J': orderedCards[19] = deck[i]; break;
-                    case '9': orderedCards[18] = deck[i]; break;
-                }
-            }
+            if (s.Suit == trump) return s;
+            return f;
         }
-        int c = 0;
-        for (int i = 0; i < 24; i++)
+        int fRankNum = 0;
+        int sRankNum = 0;
+        switch (f.Rank)
         {
-            string min = "";
-            int sum = int.MaxValue;
-            for (int j = 0; j < 24; j++)
-            {
-                if (deck[i][j] == trump)
-                {
-                    c--;
-                    continue;
-                }
-                if (sum > ranks[deck[j][0]] + suits[deck[j][1]]) 
-                {
-                    sum = ranks[deck[j][0]] + suits[deck[j][1]];
-                    min = deck[i];
-                }
-            }
-            orderedCards[c] = min;
-            c++;
+            case 'J': fRankNum = 1; break;
+            case 'Q': fRankNum = 2; break;
+            case 'K': fRankNum = 3; break;
+            case '0': fRankNum = 4; break;
+            case 'A': fRankNum = 5; break;
         }
+        switch (s.Rank)
+        {
+            case 'J': sRankNum = 1; break;
+            case 'Q': sRankNum = 2; break;
+            case 'K': sRankNum = 3; break;
+            case '0': sRankNum = 4; break;
+            case 'A': sRankNum = 5; break;
+        }
+        if(fRankNum > sRankNum) return f;
+        return s;
     }
 }
