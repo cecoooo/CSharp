@@ -60,7 +60,9 @@ public class Game
             PrintCards(trump);
             while (leftCards != 0 || first.Points < 66)
             {
-
+                if (first.Equals(this.you)) first.Move();
+                else first.Move(trump, leftCards);
+                second.Responce();
             }
         }
         return first.Name;

@@ -44,8 +44,9 @@ public class Player
         }
     }
 
-    public Card Move(int num)
+    public Card Move()
     {
+        int num = int.Parse(Console.ReadLine());
         if (num < 1 || num > this.cards.Count) 
             throw new ArgumentOutOfRangeException($"No spot {num} in you cards.");
         Card card = this.cards[num-1];
@@ -57,7 +58,7 @@ public class Player
         Card card = null;
         if (this.cards.Contains(new Card('Q', trump)) && this.cards.Contains(new Card('K', trump))) 
             card = new Card('Q', trump);
-        else if (this.cards.Contains(new Card('Q', 'C')) && this.cards.Contains(new Card('K', 'C'))) 
+        else if (this.cards.Contains(new Card('Q', 'C')) && this.cards.Contains(new Card('K', 'C')))
             card = new Card('Q', 'C');
         else if (this.cards.Contains(new Card('Q', 'D')) && this.cards.Contains(new Card('K', 'D'))) 
             card = new Card('Q', 'D');
