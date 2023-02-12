@@ -29,6 +29,12 @@ namespace Santase
             increase its count
         }
          */
+
+
+            //Player me = new Player("Me");
+            //Player you = new Player("You");   
+            //Game game = new Game(me, you, 4);
+            //game.Play();
         }
     }
 }
