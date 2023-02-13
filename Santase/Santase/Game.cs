@@ -57,12 +57,25 @@ public class Game
             int leftCards = 24;
             FirstHand(first, second, cards);
             char trump = ShooceTrump(cards);
-            PrintCards(trump);
+            PrintTrump(trump);
             while (leftCards != 0 || first.Points < 66)
             {
-                if (first.Equals(this.you)) first.Move();
-                else first.Move(trump, leftCards);
-                second.Responce();
+                Card card = null;
+                Card response = null;
+                PrintCards();
+                if (first.Equals(this.you))
+                {
+                    while(card == null) 
+                        card = first.Move();
+                }
+                else
+                {
+                    card = first.Move(trump, leftCards);
+                    while (response == null)
+                        response = second.Responce(card, leftCards);
+                }
+
+                leftCards--;
             }
         }
         return first.Name;
@@ -110,7 +123,7 @@ public class Game
         cards[cards.Count - 1] = card;
         return cards[cards.Count - 1][1];
     }
-    private void PrintCards(char trump)
+    private void PrintTrump(char trump)
     {
         string suit = "";
         switch (trump)
@@ -120,7 +133,12 @@ public class Game
             case 'H': suit = "♥"; break;
             case 'S': suit = "♠"; break;
         }
-        Console.WriteLine($"Your Cards: {this.you.ViewCards()}\nTrump suit: {suit}");
+        Console.WriteLine($"Trump suit: {suit}");
+    }
+
+    private void PrintCards()
+    {
+        Console.WriteLine($"Your Cards: {this.you.ViewCards()}");
     }
 
     private Card WinningHand(Card f, Card s, char trump)

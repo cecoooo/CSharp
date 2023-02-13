@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Santase;
@@ -21,17 +22,19 @@ public class Player
     public string Name
     {
         get { return name; }
-        private set {
+        private set
+        {
             if (!String.IsNullOrWhiteSpace(value)) name = value;
-            else throw new ArgumentException("Name must not be empty string, null or spaces only"); 
+            else throw new ArgumentException("Name must not be empty string, null or spaces only");
         }
     }
     public int Points
     {
         get { return points; }
-        private set { 
-            if(value >= 0) points = value;
-            else throw new ArgumentOutOfRangeException("Points must not be lower than zero.");   
+        private set
+        {
+            if (value >= 0) points = value;
+            else throw new ArgumentOutOfRangeException("Points must not be lower than zero.");
         }
     }
     public int GamesWon
@@ -46,25 +49,32 @@ public class Player
 
     public Card Move()
     {
-        int num = int.Parse(Console.ReadLine());
-        if (num < 1 || num > this.cards.Count) 
-            throw new ArgumentOutOfRangeException($"No spot {num} in you cards.");
-        Card card = this.cards[num-1];
-        this.cards.Remove(card);
-        return card;
+        try
+        {
+            int num = int.Parse(Console.ReadLine());
+            if (num < 1 || num > this.cards.Count)
+                throw new ArgumentOutOfRangeException($"No spot {num} in you cards.");
+            Card card = this.cards[num - 1];
+            this.cards.Remove(card);
+            return card;
+        }
+        catch (ArgumentException) 
+        {
+            return null;
+        }
     }
     public Card Move(char trump, int leftCards)
     {
         Card card = null;
-        if (this.cards.Contains(new Card('Q', trump)) && this.cards.Contains(new Card('K', trump))) 
+        if (this.cards.Contains(new Card('Q', trump)) && this.cards.Contains(new Card('K', trump)))
             card = new Card('Q', trump);
         else if (this.cards.Contains(new Card('Q', 'C')) && this.cards.Contains(new Card('K', 'C')))
             card = new Card('Q', 'C');
-        else if (this.cards.Contains(new Card('Q', 'D')) && this.cards.Contains(new Card('K', 'D'))) 
+        else if (this.cards.Contains(new Card('Q', 'D')) && this.cards.Contains(new Card('K', 'D')))
             card = new Card('Q', 'D');
-        else if (this.cards.Contains(new Card('Q', 'H')) && this.cards.Contains(new Card('K', 'H'))) 
+        else if (this.cards.Contains(new Card('Q', 'H')) && this.cards.Contains(new Card('K', 'H')))
             card = new Card('Q', 'H');
-        else if (this.cards.Contains(new Card('Q', 'S')) && this.cards.Contains(new Card('K', 'S'))) 
+        else if (this.cards.Contains(new Card('Q', 'S')) && this.cards.Contains(new Card('K', 'S')))
             card = new Card('Q', 'S');
         else if (leftCards > 12)
             card = this.cards.FindLast(x => (x.Rank == '9' && x.Suit != trump) || (x.Rank == 'J' && x.Suit != trump) || (x.Rank == 'Q' && x.Suit != trump) || (x.Rank == 'K' && x.Suit != trump) || (x.Rank == '0' && x.Suit != trump));
@@ -74,21 +84,52 @@ public class Player
         return card;
     }
 
-    public void Responce()
+    public Card Responce(Card card, int cardsLeft)
     {
-
+        bool isTrue = true;
+        Card response;
+        try
+        {
+            int num = int.Parse(Console.ReadLine());
+            if (num < 1 || num > this.cards.Count)
+                throw new ArgumentOutOfRangeException($"No spot {num} in you cards.");
+            response = this.cards[num];
+            if (cardsLeft <= 12)
+            {
+                bool isItHasSameSuit = false;
+                this.cards.ForEach(x =>
+                {
+                    if (x.Suit == card.Suit) isItHasSameSuit = true;
+                });
+                if (isItHasSameSuit)
+                {
+                    if (card.Suit != response.Suit)
+                        throw new InvalidOperationException("You cannot play this card! Ne se opitvai da shanish!\nTry again.");
+                }
+            }
+            this.cards.Remove(response);
+            return response;
+        }
+        catch (InvalidOperationException)
+        {
+            return null;
+        }
+        catch (ArgumentException)
+        {
+            return null;
+        }
     }
 
     public void AddNewCard(Card card) => this.cards.Add(card);
     public void RemoveCard(Card card) => this.cards.Remove(card);
-    
+
     public void AddPoints(int points) => this.Points += points;
-    
+
     public void AddGamesWon(int games) => this.GamesWon += games;
-    
+
     public void GameOver() => this.Points = 0;
 
-    public string ViewCards() 
+    public string ViewCards()
     {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < this.cards.Count; i++)
@@ -97,5 +138,5 @@ public class Player
         }
         return res.ToString().Trim();
     }
-    
+
 }
