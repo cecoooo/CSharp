@@ -5,9 +5,11 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InitialSetup", "InitialSetup\InitialSetup.csproj", "{1A96A3D3-0011-4D55-9DE5-2CF52E758C27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillainNames", "VillainNames\VillainNames.csproj", "{83F94408-59F6-4607-93CA-D3237ECC389B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VillainNames", "VillainNames\VillainNames.csproj", "{83F94408-59F6-4607-93CA-D3237ECC389B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinionNames", "MinionNames\MinionNames.csproj", "{9D4094B6-1BB5-4594-B7B8-F18717854693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinionNames", "MinionNames\MinionNames.csproj", "{9D4094B6-1BB5-4594-B7B8-F18717854693}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddMinion", "AddMinion\AddMinion.csproj", "{8FD2B45A-0054-456A-8285-11AAA813F534}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{9D4094B6-1BB5-4594-B7B8-F18717854693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D4094B6-1BB5-4594-B7B8-F18717854693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D4094B6-1BB5-4594-B7B8-F18717854693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FD2B45A-0054-456A-8285-11AAA813F534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FD2B45A-0054-456A-8285-11AAA813F534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FD2B45A-0054-456A-8285-11AAA813F534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FD2B45A-0054-456A-8285-11AAA813F534}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
