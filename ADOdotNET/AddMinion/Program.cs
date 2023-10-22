@@ -37,9 +37,15 @@ bool IsThereTownId(SqlConnection sqlConnection, string[] inputMinion)
     using SqlDataReader sqlDataReaderTownId = sqlCommandGetTownId.ExecuteReader();
     sqlDataReaderTownId.Read();
     if ((int)sqlDataReaderTownId[0] == 0)
+    {
+        sqlDataReaderTownId.Close();
         return false;
+    }
     else
+    {
+        sqlDataReaderTownId.Close();
         return true;
+    }
 }
 
 int getTownId(SqlConnection sqlConnection, string town) 
@@ -49,7 +55,9 @@ int getTownId(SqlConnection sqlConnection, string town)
     sqlCommandGetTownId.Parameters.AddWithValue("@town", town);
     using SqlDataReader sqlDataReaderTownId = sqlCommandGetTownId.ExecuteReader();
     sqlDataReaderTownId.Read();
-    return (int)sqlDataReaderTownId[0];
+    int res = (int)sqlDataReaderTownId[0];
+    sqlDataReaderTownId.Close();
+    return res;
 }
 
 void addTown(SqlConnection sqlConnection, string townName) 
@@ -58,8 +66,8 @@ void addTown(SqlConnection sqlConnection, string townName)
     using SqlCommand sqlCommandAddTown = new SqlCommand(addTownQuery, sqlConnection);
     sqlCommandAddTown.Parameters.AddWithValue("@town", townName);
     using SqlDataReader sqlDataReaderAddTown = sqlCommandAddTown.ExecuteReader();
-    sqlDataReaderAddTown.Read();
     Console.WriteLine($"Town {townName} was added to the database.");
+    sqlDataReaderAddTown.Close();
 }
 
 void insertIntoMinions(SqlConnection sqlConnection, string[] inputMinion, int townId) 
@@ -70,7 +78,7 @@ void insertIntoMinions(SqlConnection sqlConnection, string[] inputMinion, int to
     sqlCommandInsertIntoMinions.Parameters.AddWithValue("@age", int.Parse(inputMinion[2]));
     sqlCommandInsertIntoMinions.Parameters.AddWithValue("@town", townId);
     using SqlDataReader sqlDataReaderInsertIntoMinions = sqlCommandInsertIntoMinions.ExecuteReader();
-    sqlDataReaderInsertIntoMinions.Read();
+    sqlDataReaderInsertIntoMinions.Close();
 }
 
 bool isThereVallainId(SqlConnection sqlConnection, string name) 
@@ -81,9 +89,15 @@ bool isThereVallainId(SqlConnection sqlConnection, string name)
     using SqlDataReader sqlDataReaderVallainId = sqlCommandGetVillainId.ExecuteReader();
     sqlDataReaderVallainId.Read();
     if ((int)sqlDataReaderVallainId[0] == 0)
+    {
+        sqlDataReaderVallainId.Close();
         return false;
+    }
     else
+    {
+        sqlDataReaderVallainId.Close();
         return true;
+    }
 }
 
 int getVillainId(SqlConnection sqlConnection, string name) 
@@ -93,7 +107,9 @@ int getVillainId(SqlConnection sqlConnection, string name)
     sqlCommandGetVillainId.Parameters.AddWithValue("@name", name);
     using SqlDataReader sqlDataReaderVallainId = sqlCommandGetVillainId.ExecuteReader();
     sqlDataReaderVallainId.Read();
-    return (int)sqlDataReaderVallainId[0];
+    int res = (int)sqlDataReaderVallainId[0];
+    sqlDataReaderVallainId.Close();
+    return res;
 }
 
 int getMinionId(SqlConnection sqlConnection, string[] inputMinion, int townId) 
@@ -105,7 +121,9 @@ int getMinionId(SqlConnection sqlConnection, string[] inputMinion, int townId)
     sqlCommandGetMinionId.Parameters.AddWithValue("@townId", townId);
     using SqlDataReader sqlDataReaderMinionId = sqlCommandGetMinionId.ExecuteReader();
     sqlDataReaderMinionId.Read();
-    return (int)sqlDataReaderMinionId[0];
+    int res = (int)sqlDataReaderMinionId[0];
+    sqlDataReaderMinionId.Close();
+    return res;
 }
 
 void addVillain(SqlConnection sqlConnection, string name) 
@@ -114,7 +132,7 @@ void addVillain(SqlConnection sqlConnection, string name)
     using SqlCommand sqlCommandInsertVallain = new SqlCommand(queryAddVillain, sqlConnection);
     sqlCommandInsertVallain.Parameters.AddWithValue("@name", name);
     using SqlDataReader sqlDataReaderVallain = sqlCommandInsertVallain.ExecuteReader();
-    sqlDataReaderVallain.Read();
+    sqlDataReaderVallain.Close();
     Console.WriteLine($"Villain {name} was added to the database.");
 }
 
@@ -125,6 +143,6 @@ void makeMinionServantToVallain(SqlConnection sqlConnection, int mId, int vId, s
     sqlCommandInsertIntoMinionsVallains.Parameters.AddWithValue("@mId", mId);
     sqlCommandInsertIntoMinionsVallains.Parameters.AddWithValue("@vId", vId);
     using SqlDataReader sqlDataReaderInsertIntoMinionsVallains = sqlCommandInsertIntoMinionsVallains.ExecuteReader();
-    sqlDataReaderInsertIntoMinionsVallains.Read();
+    sqlDataReaderInsertIntoMinionsVallains.Close();
     Console.WriteLine($"Successfully added {mName} to be minion of {vName}.");
 }
