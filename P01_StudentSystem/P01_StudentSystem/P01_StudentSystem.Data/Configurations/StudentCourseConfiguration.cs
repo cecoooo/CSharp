@@ -1,13 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using P01_StudentSystem.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace P01_StudentSystem.P01_StudentSystem.Data.Configurations
+namespace P01_StudentSystem.Data.Configurations
 {
     public class StudentCourseConfiguration : IEntityTypeConfiguration<StudentCourse>
     {

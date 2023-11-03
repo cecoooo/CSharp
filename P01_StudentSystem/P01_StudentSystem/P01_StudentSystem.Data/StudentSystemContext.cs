@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using P01_StudentSystem.Data.Configurations;
 using P01_StudentSystem.Data.Models;
-using P01_StudentSystem.P01_StudentSystem.Data.Configurations;
 
 namespace P01_StudentSystem.Data
 {
@@ -10,6 +9,9 @@ namespace P01_StudentSystem.Data
         string connectionString = "Server=CECO\\SQLEXPRESS;Database=School;User Id=sa;Password=1234;TrustServerCertificate=True;";
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Homework> Homeworks { get; set; }
+        public DbSet<Resource> Resources { get; set; }
+        public DbSet<StudentCourse> StudentsCourses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
