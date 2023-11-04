@@ -1,10 +1,13 @@
-﻿namespace P02_FootballBetting 
+﻿using P02_FootballBetting.Data;
+using P02_FootballBetting.Data.Models;
+
+namespace P02_FootballBetting 
 {
-    public class Program 
+    public class StartUp 
     {
-        public static void Main(string[] args) 
+        public static void Main() 
         {
-            Console.WriteLine("Hello World!");
+            
         }
     }
 }

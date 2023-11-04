@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace P02_FootballBetting.Data.Models
 {
-    internal class PlayerStatistic
+    public class PlayerStatistic
     {
+        [ForeignKey(nameof(Game))]
+        public int GameId { get; set; }
+
+        [ForeignKey(nameof(Player))]
+        public int PlayerId { get; set; }
+        public int ScoredGoals { get; set; }
+        public int Assists { get; set; }
+        public int MinutesPlayed { get; set; }
+        public Game Game { get; set; }
+        public Player Player { get; set; }
     }
 }

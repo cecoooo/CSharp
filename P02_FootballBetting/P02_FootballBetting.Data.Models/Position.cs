@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace P02_FootballBetting.Data.Models
 {
-    internal class Position
+    public class Position
     {
+        [Key]
+        public int PositionId { get; set; }
+        [Required]
+        [Unicode]
+        public int Name { get; set; }
     }
 }

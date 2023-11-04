@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace P02_FootballBetting.Data.Models
 {
-    internal class Country
+    public class Country
     {
+        [Key]
+        public int CountryId { get; set; }
+        [Required]
+        [Unicode]
+        public string Name { get; set; }
+
+        public ICollection<Town> Towns { get; set; }
     }
 }
