@@ -6,7 +6,7 @@ namespace P01_StudentSystem.Data
 {
     public class StudentSystemContext: DbContext
     {
-        string connectionString = "Server=CECO\\SQLEXPRESS;Database=School;User Id=sa;Password=1234;TrustServerCertificate=True;";
+        string connectionString = @"--Set_Your_Connection_String--";
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Homework> Homeworks { get; set; }

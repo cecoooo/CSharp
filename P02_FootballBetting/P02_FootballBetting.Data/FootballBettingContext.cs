@@ -6,7 +6,7 @@ namespace P02_FootballBetting.Data
 {
     public class FootballBettingContext : DbContext
     {
-        const string connectionString = "Server=CECO\\SQLEXPRESS;Database=FootballBetting;User Id=sa;Password=1234;TrustServerCertificate=True;";
+        const string connectionString = @"--Set_Your_Connection_String--";
 
         public DbSet<Team> Teams { get; set; }
         public DbSet<Bet> Bets { get; set; }

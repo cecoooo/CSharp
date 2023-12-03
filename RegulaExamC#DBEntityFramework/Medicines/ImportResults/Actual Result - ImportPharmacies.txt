@@ -1,0 +1,13 @@
+Successfully imported pharmacy - Vitality with 14 medicines.
+Successfully imported pharmacy - GreenLeaf with 10 medicines.
+Invalid Data!
+Invalid Data!
+Invalid Data!
+Invalid Data!
+Successfully imported pharmacy - PureLife with 0 medicines.
+Successfully imported pharmacy - Revive with 7 medicines.
+Invalid Data!
+Invalid Data!
+Invalid Data!
+Invalid Data!
+Invalid Data!

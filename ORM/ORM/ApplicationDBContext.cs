@@ -11,7 +11,7 @@ namespace ORM
 {
     public class ApplicationDBContext: DbContext
     {
-        private const string _connectionString = "Server=CECO\\SQLEXPRESS;Database=MinionsDB;User Id=sa;Password=1234;TrustServerCertificate=True;";
+        private const string _connectionString = @"--Set_Your_Connection_String--";
 
         public DbSet<Town>? Towns { get; set; }
         public DbSet<Country>? Countries { get; set; }

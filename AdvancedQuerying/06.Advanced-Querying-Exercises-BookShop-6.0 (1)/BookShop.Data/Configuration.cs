@@ -2,7 +2,6 @@
 {
     internal class Configuration
     {
-        internal static string ConnectionString
-            => "Server=CECO\\SQLEXPRESS;Database=BookShop;User Id=sa;Password=1234;TrustServerCertificate=True;";
+        internal static string ConnectionString = @"--Set_Your_Connection_String--";
     }
 }

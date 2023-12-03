@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-string connectionString = "Server=CECO\\SQLEXPRESS;Database=MinionsDB;User Id=sa;Password=1234;TrustServerCertificate=True;";
+string connectionString = @"--Set_Your_Connection_String--";
 
 using SqlConnection connection = new SqlConnection(connectionString);
 connection.Open();

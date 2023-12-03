@@ -2,7 +2,6 @@
 {
     public static class Configuration
     {
-        public const string ConnectionString =
-            @"Server=CECO\SQLEXPRESS;Database=ProductShop;User Id=sa;Password=1234;TrustServerCertificate=True;";
+        public const string ConnectionString = @"--Set_Your_Connection_String--";
     }
 }
